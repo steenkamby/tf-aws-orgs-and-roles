@@ -85,7 +85,7 @@ x aws-account Master
 | aws-account Custodian | For automated enforcing of policies on all sub-accounts.                                            |
 | aws-account Audit     | Provides auditors an entry(glasspane) to switchroles into read-only audit roles in the subaccounts. |
 
-### Business Domain OUs and accounts
+### IT DDD OUs and accounts
 
 | Account / OU                  | Purpose                                                                                   |
 |-------------------------------|-------------------------------------------------------------------------------------------|
@@ -147,3 +147,17 @@ For this task the following needs to be implemented via Terraform.
 #### Links
 
 <https://chaosgears.com/dont-panic-organize-part-1-of-2/>
+
+## Running the Terraform
+
+* Create a root aws account, create a user with terminal access
+* brew install tf gpg awscli
+* Configure aws locally for the root account. edit provider.tf with the profile name of the root user.
+* Replace the exampleuser.asc with a locally created key, edit company_users.tf if you change the filename.
+* terraform init
+* terraform plan
+* terraform apply
+* To decrypt the secrets pr user, output them to files like secret_key.tmp and secret_pw.tmp and use: 
+    * base64 --decode secret_key.tmp | gpg --decrypt
+    * base64 --decode secret_pw.tmp | gpg --decrypt
+    * This example only outputs the test_admins fake credentials, in a real use case, you would collect valid public keys from all the develops and ops, and input those, then map the credential outputs for all users and send them the resulting JSON files.
