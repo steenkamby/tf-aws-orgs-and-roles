@@ -119,7 +119,7 @@ If the org was fully implemented, Developers would also have domain non-prod sco
 Also, it's clear that there are some roles, which are out of scope for this exercise, which are nessecary to run the (minimalistic) organisation compliantly.
 
 * Root Login on Master account - Locked in a safe somewhere and never touched.
-* CTO - Able to assign SecOps and Audit roles.
+* CTO / COO - Able to assign SecOps and Audit roles.
 * SecOps - Who run the security account, and are able to assign dev and ops roles. (But dont have access into prod accounts)
 * Audit - Able to use the glass-pane read only access to make sure company policies are being upheld.
 
@@ -140,6 +140,10 @@ For this task the following needs to be implemented via Terraform.
 
 1. Org structure that are needed for user roles.
 2. SCP's
-3. Users, groups and roles
-4. S3 Bucket
+3. Users, groups and roles, with example policies to set them aside.
+4. Assign roles to groups
+5. S3 Bucket(s)
 
+#### Links
+
+<https://chaosgears.com/dont-panic-organize-part-1-of-2/>
