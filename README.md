@@ -156,10 +156,23 @@ For this task the following needs to be implemented via Terraform.
 * Configure aws locally for the root account. edit provider.tf with the profile name of the root user.
 * Replace the exampleuser.asc with a locally created key, edit company_users.tf if you change the filename.
 * Replace the emails in company_org.tf with one under your control. Note: if you wish to use email aliases, you must choose a provider who supports it, like gmail.
-* terraform init
-* terraform plan
-* terraform apply
+* For each subfolder (organization, iam)
+    * terraform init
+    * terraform plan
+    * terraform apply
 * To decrypt the secrets pr user, output them to files like secret_key.tmp and secret_pw.tmp and use: 
     * base64 --decode secret_key.tmp | gpg --decrypt
     * base64 --decode secret_pw.tmp | gpg --decrypt
     * This example only outputs the test_admins fake credentials, in a real use case, you would collect valid public keys from all the develops and ops, and input those, then map the credential outputs for all users and send them the resulting JSON files.
+
+### About the terraform structure.
+
+There are two subfolders for two different domains of IT configuration. In a real application, it might be prudent to keep these domains in separate repositories. Also, in a real application, there should be additional global domains defined for global networking, dns, security, shared infrastucture, as well as reuseable local domains for setting up account/environment base infrastructure - The last layer should be application domain specific infrastructure, in this example, that would be the S3 buckets, cloudfront etc.
+
+### Organization
+
+The folder should contain all the terraform templates to setup the organization, OU's, accountsand SCP's.
+
+### iam
+
+The folder should contain all the terraform templates to setup the users, user groups, user policies. This includes pr. sub-account configuration.
