@@ -154,16 +154,21 @@ For this task the following needs to be implemented via Terraform.
 * Create a root aws account, create a user with terminal access
 * brew install tf gpg awscli
 * Configure aws locally for the root account. edit provider.tf with the profile name of the root user.
-* Replace the exampleuser.asc with a locally created key, edit company_users.tf if you change the filename.
-* Replace the emails in company_org.tf with one under your control. Note: if you wish to use email aliases, you must choose a provider who supports it, like gmail.
-* For each subfolder (organization, iam)
+* Replace the iam/exampleuser.asc with a locally created key, edit company_users.tf if you change the filename.
+* Replace the emails in organization/organization.tf with one under your control. Note: if you wish to use email aliases, you must choose a provider who supports it, like gmail.
+* For /organization, run:
     * terraform init
-    * terraform plan
-    * terraform apply
+    * terraform plan -out tfplan
+    * terraform apply tfplan
+    * edit ~/.aws/config to add profiles (non_prod, prod & archive) for the newly created sub-accounts
+* For /iam, run:
+    * terraform init
+    * terraform plan -out tfplan
+    * terraform apply tfplan
 * To decrypt the secrets pr user, output them to files like secret_key.tmp and secret_pw.tmp and use: 
     * base64 --decode secret_key.tmp | gpg --decrypt
     * base64 --decode secret_pw.tmp | gpg --decrypt
-    * This example only outputs the test_admins fake credentials, in a real use case, you would collect valid public keys from all the develops and ops, and input those, then map the credential outputs for all users and send them the resulting JSON files.
+    * This example only outputs test_admin_1s fake credentials, in a real use case, you would collect valid public keys from all the developers and sre's, and input those, then map the credential outputs for all users and send them the resulting JSON files, so they can decrypt their own passwords using keybase or gpg.
 
 ### About the terraform structure.
 
