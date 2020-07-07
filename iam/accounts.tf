@@ -72,15 +72,15 @@ resource "aws_iam_policy" "assume_archive" {
 
 ## Ops - full access across the accounts
 resource "aws_iam_group_policy_attachment" "ops_admin_non_prod" {
-  group      = "administrators"
+  group      = "ops"
   policy_arn = aws_iam_policy.assume_non_prod.arn
 }
 resource "aws_iam_group_policy_attachment" "ops_admin_prod" {
-  group      = "administrators"
+  group      = "ops"
   policy_arn = aws_iam_policy.assume_prod.arn
 }
 resource "aws_iam_group_policy_attachment" "ops_admin_archive" {
-  group      = "administrators"
+  group      = "ops"
   policy_arn = aws_iam_policy.assume_archive.arn
 }
 

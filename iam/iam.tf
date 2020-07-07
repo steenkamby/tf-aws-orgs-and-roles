@@ -1,7 +1,7 @@
 ### GROUPS - START
-module "administrators" {
+module "ops" {
   source                            = "./iam-groups"
-  name                              = "administrators"
+  name                              = "ops"
   enable-AdministratorAccess        = true
 }
 
@@ -16,7 +16,7 @@ module "developers" {
 module "admin_user_1" {
   source                            = "./iam-users"
   name                              = "test_admin_user_1"
-  groups                            = ["administrators"]
+  groups                            = ["ops"]
   force_destroy                     = true
   pgp_key                           = file("exampleuser.asc")
 }
@@ -29,7 +29,7 @@ output "admin_user_1-aws_iam_user-credentials" {
 module "admin_santiago_lastname" {
   source                            = "./iam-users"
   name                              = "santiago_lastname"
-  groups                            = ["administrators"]
+  groups                            = ["ops"]
   force_destroy                     = true
   pgp_key                           = file("exampleuser.asc")
 }
@@ -37,7 +37,7 @@ module "admin_santiago_lastname" {
 module "admin_felix_lastname" {
   source                            = "./iam-users"
   name                              = "felix_lastname"
-  groups                            = ["administrators"]
+  groups                            = ["ops"]
   force_destroy                     = true
   pgp_key                           = file("exampleuser.asc")
 }
@@ -45,7 +45,7 @@ module "admin_felix_lastname" {
 module "admin_morgan_lastname" {
   source                            = "./iam-users"
   name                              = "morgan_lastname"
-  groups                            = ["administrators"]
+  groups                            = ["ops"]
   force_destroy                     = true
   pgp_key                           = file("exampleuser.asc")
 }
