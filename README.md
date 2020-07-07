@@ -131,6 +131,7 @@ For this task three basic SCP's will be implemeted.
 1. A logging SCP that prevents any sub-account from disabling CloudTrails logging. All actions taken should be auditable always.
 2. A deny all org wide SCP to lock down all features in all sub accounts.
 3. A SCP to allow the use of S3 in the legal docs OU.
+4. A SCP blocking the tf-created root users of the new accounts from taking actions
 
 In other words, we start by locking down logging for audit, then blacklist everything, then whitelist the feature we actually need.
 
@@ -154,6 +155,7 @@ For this task the following needs to be implemented via Terraform.
 * brew install tf gpg awscli
 * Configure aws locally for the root account. edit provider.tf with the profile name of the root user.
 * Replace the exampleuser.asc with a locally created key, edit company_users.tf if you change the filename.
+* Replace the emails in company_org.tf with one under your control. Note: if you wish to use email aliases, you must choose a provider who supports it, like gmail.
 * terraform init
 * terraform plan
 * terraform apply

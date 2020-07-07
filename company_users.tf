@@ -1,14 +1,14 @@
 ### GROUPS - START
 module "administrators" {
-  source                     = "./iam-groups"
-  name                       = "administrators"
-  enable-AdministratorAccess = true
+  source                            = "./iam-groups"
+  name                              = "administrators"
+  enable-AdministratorAccess        = true
 }
 
 module "developers" {
-  source                             = "./iam-groups"
-  name                               = "developers"
-  enable-AWSCodeBuildDeveloperAccess = true
+  source                            = "./iam-groups"
+  name                              = "developers"
+  enable-DeveloperAccessNonProd     = true
 }
 ### GROUPS - END
 
